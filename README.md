@@ -9,7 +9,7 @@
   </a>
 </p>
 
-Created by [Lizhao Liu](https://scholar.google.com/citations?user=_AMTrAQAAAAJ&hl=zh-CN), Xunlong Xiao from the South China University of Technology.
+Created by [Lizhao Liu](https://scholar.google.com/citations?user=_AMTrAQAAAAJ&hl=zh-CN), Xunlong Xiao, [Zhuangwei Zhuang](https://scholar.google.com/citations?user=T2aPuoYAAAAJ&hl=zh-CN) from the South China University of Technology.
 
 This repository contains the official PyTorch implementation of our ICCV 2023 paper [*Contextual Point Cloud Modeling for Weakly-supervised Point Cloud Semantic Segmentation*](#).
 
