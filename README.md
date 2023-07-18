@@ -9,7 +9,7 @@ This repository contains the official PyTorch implementation of our ICCV 2023 pa
     <img src="https://img.shields.io/badge/ICCV-2023-blue.svg">
   </a>
   <a href="" target='_blank'>
-    <img src="https://img.shields.io/badge/License-MIT-green.svg">
+    <img src="https://img.shields.io/badge/License-apache-green.svg">
   </a>
 </p>
 
