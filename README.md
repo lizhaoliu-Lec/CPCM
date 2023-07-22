@@ -27,4 +27,13 @@ For MinkowskiEngine 0.5.4, see instruction in [me054](prepare_env/me054/README.m
 
 For MinkowskiEngine 0.4.3, see instruction in [me043](prepare_env/me043/README.md)
 
+### Data Preparation
+We perform experiments on the following dataset
+
+- [ScanNet V2](#)
+- [S3DIS](#)
+- [Semantic-KITTI (Front view that contains both RGB and XYZ)](#)
+
+See instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.md) for details.
+
 ## :fire: Code is coming soon!
