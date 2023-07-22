@@ -30,9 +30,9 @@ For MinkowskiEngine 0.4.3, see instruction in [me043](prepare_env/me043/README.m
 ### Data Preparation
 We perform experiments on the following dataset
 
-- [ScanNet V2](#)
-- [S3DIS](#)
-- [Semantic-KITTI (Front view that contains both RGB and XYZ)](#)
+- [ScanNet V2](https://kaldir.vc.in.tum.de/scannet_benchmark/)
+- [S3DIS](http://buildingparser.stanford.edu/dataset.html)
+- [Semantic-KITTI (Front view that contains both RGB and XYZ)](http://www.semantic-kitti.org/)
 
 See instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.md) for details.
 
