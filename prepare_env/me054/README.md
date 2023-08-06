@@ -78,6 +78,16 @@ vim pybind/extern.hpp
 # (4) :wq
 ```
 
+Install the MinkowskiEngine 0.5.4
+```bash
+python setup.py install --blas=openblas --force_cuda
+```
+
+Go back to the root directory of CPCM
+```bash
+cd ../..
+```
+
 ### Install requirements.txt
 Finally, install the requirements.txt
 ```bash

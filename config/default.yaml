@@ -1,0 +1,344 @@
+# Copyright (c) Facebook, Inc. and its affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+GENERAL:
+  manual_seed: 123
+  debug: False
+  exp_name: default_exp_name_specify_in_cmd_latter
+  is_distributed: True
+
+MODEL:
+  name: Res16UNet34C
+  in_channels: 3
+  out_channels: 20
+  D: 3
+  conv1_kernel_size: 3
+  weights:
+  weights_for_inner_model: False
+  dilations: [ 1,1,1,1 ]
+  bn_momentum: 0.02
+  resume: False
+  resume_path: ""
+
+  # Wrappers
+  wrapper_type:
+  wrapper_region_type: 1
+  wrapper_kernel_size: 3
+  wrapper_lr: 0.1
+
+  # Meanfield arguments
+  meanfield_iterations: 10
+  crf_spatial_sigma: 1
+  crf_chromatic_sigma: 12
+
+  # for cross entropy loss
+  entropy_weight_type:
+  entropy_weight_stanford_0_0002: [ 2.7080357142857143, 16.975746268656717, 22.69077306733167, 4.504455445544554, 1.4614519755862512, 7.783575705731394, 12.690376569037657, 5.589066339066339, 1.6498640072529465, 64.53191489361703, 8.456319702602231, 1.0, 11.261138613861386 ]
+  entropy_weight_scannet_20pts: [ 1.012301013024602, 1.0, 4.287027579162411, 5.008353221957041, 2.3316666666666666, 7.149914821124361, 4.40398740818468, 5.353316326530612, 8.618069815195073, 9.82903981264637, 63.59090909090909, 35.26890756302521, 8.31089108910891, 13.58252427184466, 37.810810810810814, 15.778195488721805, 22.324468085106382, 43.2680412371134, 21.09045226130653, 4.413249211356467 ]
+  entropy_weight_stanford_0_0002_v2: [ 1.0, 10.0, 10.0, 5.0, 1.0, 5.0, 10.0, 5.0, 1.0, 10.0, 5.0, 1.0, 5.0 ]
+  entropy_weight_scannet_20pts_v2: [ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 10.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ]
+
+  # for mlp layer
+  mlp: False
+  mlp_factor: 1
+  mlp_check_pseudo_instance_label: False
+
+  # for momentum model
+  momentum_model_apply: False
+  momentum_model_m: 0.99
+
+  # for two stream model
+  two_stream_model_apply: False
+
+  # for pseudo instance branch in UNet
+  pic_branch: False
+  pic_dmodel: 128
+  pic_heads: 4
+  pic_dff: 512
+  pic_dropout: 0.1
+
+  # for pseudo instance pool in UNet
+  pic_attentive_pool: False
+  pic_attentive_pool_with_coord: True
+  pic_attentive_pool_num_head: 1
+  pic_attentive_pool_dropout: 0.1
+  pic_attentive_pool_feats_key: semantic_feats
+
+  # for scene classification
+  apply_scene_cls: False
+
+  # for prototype model
+  prototype_model_apply: False
+  prototype_dim: 96
+  prototype_momentum: 0.99
+  prototype_update_type: update_by_valid_gt
+  prototype_update_entropy_threshold: 0.1
+
+  # for look back model
+  look_back_model_apply: False
+  look_back_update_every_step: 400 # about 8 epoch for S3DIS dataset
+  look_back_warm_step: 400 # continue to update until reach warm_step
+
+  # for mlp head model
+  mlp_head_model_apply: False
+  mlp_head_expand_factor: 1
+  mlp_head_dim: 96
+
+OPTIMIZER:
+  name: SGD
+  lr: 0.01
+  sgd_momentum: 0.9
+  sgd_dampening: 0.1
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  weight_decay: 0.0001
+  param_histogram_freq: 100
+  save_param_histogram: False
+  iter_size: 1
+
+# Scheduler
+SCHEDULER:
+  name: StepLR
+  max_iter: 60000
+  step_size: 20000
+  step_gamma: 0.1
+  poly_power: 0.9
+  exp_gamma: 0.95
+  exp_step_size: 445
+  step_by: step
+  warm_step: 0
+  warm_step_by: step
+
+# Dataset
+DATA:
+  name: ScanNetV2DataLoader
+  dataset: ScannetVoxelization2cmDataset
+  train_split: train
+  val_split: val
+  test_split: test
+  train_file:
+  voxel_size: 0.05
+  data_dir: data
+  sampled_inds:
+  temporal_dilation: 30
+  temporal_numseq: 3
+  point_lim: -1
+  pre_point_lim: -1
+  batch_size: 2
+  val_batch_size: 1
+  test_batch_size: 1
+  cache_data: False
+  num_workers: 16
+  num_val_workers: 16
+  ignore_label: 255
+  return_transformation: False
+  ignore_duplicate_class: False
+  partial_crop: 0
+  train_limit_numpoints: 0
+
+  # Point Cloud Dataset
+  synthia_path: /home/chrischoy/datasets/Synthia/Synthia4D
+  # For temporal sequences
+  synthia_camera_path: /home/chrischoy/datasets/Synthia/%s/CameraParams/
+  synthia_camera_intrinsic_file: intrinsics.txt
+  synthia_camera_extrinsics_file: Stereo_Right/Omni_F/%s.txt
+  temporal_rand_dilation: False
+  temporal_rand_numseq: False
+
+  scannet_path: /mnt/cephfs/mixed/dataset/scannet_fully_supervised_preprocessed
+  stanford3d_path: /mnt/cephfs/mixed/dataset/stanford_fully_supervised_preprocessed
+  #  semantic_kitti_path: /home/liulizhao/datasets/semantic_kitti_fully_supervised_preprocessedV2
+  semantic_kitti_path: /home/liulizhao/datasets/semantic_kitti_fov_fully_supervised_preprocessed
+  scannet_sampled_inds:
+  stanford3d_sampled_inds:
+  semantic_kitti_sampled_inds:
+
+  # turn off for data efficient model, otherwise may/will potentially loss label for ScanNetV2/S3DIS
+  sparse_label: True
+
+  # for two stream data augmentation process
+  two_stream: False
+
+  # for instance aware clustering
+  scannet_instance_categories: [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+  scannet_background_categories: [ 0, 1 ]
+  stanford_instance_categories: [ 0, 1, 2, 3, 5, 6, 7, 9, 10, 12 ]
+  stanford_background_categories: [ 4, 8, 11 ]
+
+  # turn on for data efficient model, otherwise, around 25% (for Scannet) and 50% (for Stanford) labels will lose
+  retain_label: False
+  dropout_retain_label: False
+
+  # for alignment level choices ['input', 'feature'], default feature
+  alignment_level: feature
+
+# Data augmentation
+AUGMENTATION:
+  use_feat_aug: True
+  data_aug_color_trans_ratio: 0.10
+  data_aug_color_jitter_std: 0.05
+  use_color_jitter: True
+  normalize_color: True
+  normalize_coord: False
+  data_aug_scale_min: 0.9
+  data_aug_scale_max: 1.1
+  data_aug_hue_max: 0.5
+  data_aug_saturation_max: 0.2
+  use_auto_contrast: True
+  use_translation: True
+
+# Evaluator
+EVALUATOR:
+  metrics: [ 'IoUv2', 'Accv2' ]
+  iou_num_class: 20 # 20 for scannet, 13 for stanford
+
+# Trainer
+TRAINER:
+  name: FullySupervisedTrainer
+  epochs: 100
+  log_every: 10
+  empty_cache_every: -1 # me 0.5.4 will raise cuda out of memory error after some epochs
+
+  # for PseudoContrastiveTrainer
+  pseudo_instance_contrastive_loss_mode: batch_only # options: ['batch_only', 'negative_bank']
+  pseudo_instance_contrastive_num_group_point: 10 # num points used for pseudo instance grouping
+  pseudo_instance_contrastive_group_threshold: -1.0 # threshold for filtering out noisy points during grouping
+  pseudo_instance_contrastive_check_label: False # whether check the pseudo label of the group points
+  pseudo_instance_contrastive_temperature: 0.1 # temperature for contrastive loss
+  pseudo_instance_contrastive_pseudo_instance_mode: euclidean_distance # options: ['euclidean_distance', 'manifold']
+  pseudo_instance_contrastive_feats_key: semantic_feats # feats keys that used to perform pseudo_instance_contrastive
+  pseudo_instance_contrastive_loss_weight: 0.1 # weights for contrastive loss
+  pseudo_instance_contrastive_loss_warmup_epoch: 5 # num passed epochs before calculate contrastive loss
+  pseudo_instance_bank_num_feat: 256 # num feats for each class in memory bank
+  pseudo_instance_bank_dim_feat: 96 # feats dim for memory_bank
+  pseudo_instance_expand_label: False # whether to expand label region to high confident unlabeled part
+  pseudo_instance_expand_label_num_per_class: 10 # num_expand_label per class
+  pseudo_instance_normalize_feat: True # whether to normalize features
+  pseudo_instance_contrastive_manifold_K: 10 # number of point during manifold searching
+  pseudo_instance_contrastive_manifold_eta: 100 # smooth value for the exp operation in manifold computation
+
+  # for TwoStreamTrainer
+  two_stream_feats_key: semantic_feats # feats keys that used to calculate unsupervised loss
+  two_stream_loss_weight: 0.1 # optimization strength for unsupervised loss
+  two_stream_loss_start_epoch: -1 # the epoch to start cal two stream loss for gradient update
+  two_stream_loss_warmup_epoch: 5  # num passed epochs before calculate unsupervised loss
+  two_stream_loss_mode: mse # options: ['mse', 'cosine_sim', 'point_info_nce', 'self_training', 'js_divergence']
+  two_stream_contrastive_temperature: 0.1 # temperature for contrastive loss
+  two_stream_contrastive_num_sample: 4096 # num points for contrastive loss
+  two_stream_seg_both: False # whether to backward both segmentation stream
+  two_stream_mask_mode: random # whether to mask aux feats (only mask the rgb feats)
+  two_stream_mask_ratio: -1. # the mask ratio for masking aux feats
+  two_stream_mask_grid_size: 8 # the grid size for mask_mode == 'grid'
+  two_stream_mask_prob: 1.0 # the probability to apply feature masking
+  two_stream_mask_ratio_mode: constant # the mask ratio mode
+  two_stream_mask_start_epoch: -1 # the epoch to start cal mask loss for gradient update
+  two_stream_mask_warmup_epoch: 5 # num passed epochs before reach full mask ratio  two_stream_return_list_feats: False # return list feats or concat along point dim for all points in a batch
+  two_stream_return_list_feats: False # return list feats or concat along point dim for all points in a batch
+  two_stream_mask_extra_stream: False # turn extra stream for mask loss
+  two_stream_mask_feats_key: semantic_feats # feats keys that used to calculate masked loss
+  two_stream_loss_mask_mode: js_divergence # options: ['mse', 'cosine_sim', 'point_info_nce', 'self_training', 'js_divergence']
+  two_stream_loss_mask_weight: 0.1 # optimization strength for masked loss
+  two_stream_loss_mask_warmup_epoch: 5 # num passed epochs before calculate masked loss
+  two_stream_mask_corr_loss: True # calculate mask loss for feats and feats_masked_aux
+  two_stream_mask_self_loss: False # calculate mask loss for feats_aux and feats_masked_aux
+  two_stream_mask_loss_threshold: -1. # confidence threshold for selecting mask feats' target
+  two_stream_masked_loss_type: 'plain' # apply plain or chunk wise loss
+  two_stream_chunked_masked_loss_on_masked_features_only: False # ignore clean features for masked loss
+  two_stream_chunked_masked_loss_threshold: -1. # confidence threshold for selecting confident chunk targets
+  two_stream_unlabeled_data_only: False # whether to use only the unlabeled data for unsupervised loss calculation
+  two_stream_loss_threshold: -1. # confidence threshold for select two stream loss feats
+  two_stream_mask_loss_entropy_threshold: -1. # confident entropy threshold for select confident mask features
+  two_stream_mask_loss_soft_weighting: False # whether to use soft weighting to cal mask loss
+
+  # for GeometricAwareGlobalLocalTrainer
+  geo_aware_entropy_threshold: 0.1 # threshold to partition point into confident and diffident sets
+  geo_aware_bfs_cluster_radius: 2. # radius threshold to cluster two points
+  geo_aware_bfs_cluster_num_min_point: 200 # number of point that a cluster must meet
+  geo_aware_bfs_cluster_num_parallel: 1000 # number of point for parallelization inside the for loop
+  geo_aware_loss_warmup_epoch: 5 # number of epoch before actually apply the weight
+  geo_aware_loss_seg_conf_apply: False # whether to apply segmentation loss on the confident clusters
+  geo_aware_loss_seg_conf_weight: 0.1 # optimization strength for segmentation loss on the confident clusters
+  geo_aware_loss_consistency_conf_apply: False # whether to apply consistency loss on the confident clusters
+  geo_aware_loss_consistency_conf_weight: 0.1 # optimization strength for consistency loss on the confident clusters
+  geo_aware_loss_seg_diff_K: 3 # number of topK class to compute segmentation loss for diffident part
+  geo_aware_loss_seg_diff_apply: False # whether to apply segmentation loss on the diffident clusters
+  geo_aware_loss_seg_diff_weight: 0.1 # optimization strength for segmentation loss on the diffident clusters
+  geo_aware_loss_consistency_diff_apply: False # whether to apply consistency loss on the diffident clusters
+  geo_aware_loss_consistency_diff_key: batch_scores_diff # the key for loss computation
+  geo_aware_loss_consistency_diff_weight: 0.1 # optimization strength for consistency loss on the diffident clusters
+  geo_aware_loss_prototype_apply: False # whether to optimize the similarity between class prototypes and its features
+  geo_aware_loss_prototype_weight: 0.1 # optimization strength for prototypes and its features
+  geo_aware_loss_contrastive_apply: False # whether to optimize the contrastive loss
+  geo_aware_loss_contrastive_weight: 0.1 # optimization strength for contrastive loss
+  geo_aware_loss_contrastive_key: semantic_feats # feats key to perform contrastive learning
+  geo_aware_loss_contrastive_t: 0.07 # temperature for contrastive learning
+
+  geo_aware_vis_cluster: False # save the cluster result every #log_every step
+
+  # for MilTransformerTrainer
+  mil_transformer_encoder_layer_num: 2
+  mil_transformer_decoder_layer_num: 2
+  mil_transformer_dim_feedforward: 256
+  mil_transformer_nhead: 2
+  mil_transformer_sample_ratio: 0.8
+  mil_transformer_loss_seg_weight: 1.0
+  mil_transformer_loss_mil_weight: 0.01
+  mil_transformer_loss_cls_weight: 0.05
+  mil_transformer_loss_consistent_weight: 0.01
+
+train:
+  # Training / test parameters
+  is_train: True
+  stat_freq: 40
+  val_freq: 1000
+  empty_cache_freq: 1
+  train_phase: train
+  val_phase: val
+  overwrite_weights: True
+  resume: True
+  resume_optimizer: True
+  eval_upsample: False
+  lenient_weight_loading: False
+
+# Distributed Training configurations
+distributed:
+  distributed_world_size: 8
+  distributed_rank: 0
+  distributed_backend: nccl
+  distributed_init_method:
+  distributed_port: 10010
+  device_id: 0
+  distributed_no_spawn: True
+  ddp_backend: c10d #['c10d', 'no_c10d']
+  bucket_cap_mb: 25
+
+# Test
+test:
+  visualize: False
+  save_features: False
+  save_feat_dir: outputs/feat
+  test_phase: test
+  test_stat_freq: 100
+  evaluate_benchmark: False
+
+  scannet_testset_output_result_path: ""
+  scannet_valset_output_result_path: ""
+
+  stanford_valset_output_result_path: ""
+
+  save_pth:
+
+# Misc
+misc:
+  is_cuda: True
+  load_path:
+  log_step: 50
+  log_level: INFO #['INFO', 'DEBUG', 'WARN']
+  num_gpus: 1
+  seed: 123
+  log_dir: outputs/default
+  # New configs for experimental sweeps
+  load_bn: all_bn
+  resume_config:
+  train_stuff: False

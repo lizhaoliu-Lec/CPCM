@@ -1,0 +1,2 @@
+PROJECT_NAME = 'WeaklySegmentationKit'
+PROJECT_ABBREV_NAME = 'WSK'
