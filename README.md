@@ -1,4 +1,4 @@
-## Contextual Point Cloud Modeling for Weakly-supervised Point Cloud Semantic Segmentation (ICCV 2023)
+# Contextual Point Cloud Modeling for Weakly-supervised Point Cloud Semantic Segmentation (ICCV 2023)
 
 <p align="center">
   <a href="" target='_blank'>
@@ -18,7 +18,7 @@ This repository contains the official PyTorch implementation of our ICCV 2023 pa
 <img src="figs/CPCM_overview.png" align="center">
 
 
-### Environment Setup
+## Environment Setup
 Our codebase is based on [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine), a high performance sparse convolution library built on PyTorch.
 
 We recommend to use MinkowskiEngine 0.5.4, since it is much faster than 0.4.3
@@ -27,7 +27,7 @@ For MinkowskiEngine 0.5.4, see instruction in [me054](prepare_env/me054/README.m
 
 For MinkowskiEngine 0.4.3, see instruction in [me043](prepare_env/me043/README.md)
 
-### Data Preparation
+## Data Preparation
 We perform experiments on the following dataset
 
 - [ScanNet V2](https://kaldir.vc.in.tum.de/scannet_benchmark/)
@@ -42,9 +42,9 @@ The preprocessed datasets are shared via google drive
 
 Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.md) to prepare by yourself.
 
-### Quantitative Results
-- Experiments on the indoor dataset (ScanNet V2 & S3DIS)
-- All results below are in mIoU(%)
+## Quantitative Results
+All results below are in mIoU(%)
+### Experiments on the indoor dataset (ScanNet V2 & S3DIS)
 <table>
     <tr>
         <td rowspan="2">Method</td>
@@ -80,8 +80,7 @@ Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.
     </tr>
 </table>
 
-- Experiments on the outdoor dataset (SemanticKITTY)
-- All results below are in mIoU(%)
+### Experiments on the outdoor dataset (SemanticKITTY)
 <table>
     <tr>
         <td rowspan="2">Method</td>
@@ -112,33 +111,28 @@ Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.
     </tr>
 </table>
 
-### Qualitative Results
-#### Qualitative results for ScanNet V2
+## Qualitative Results
+### Qualitative results on ScanNet V2
 <img src="figs/qualitative_results_for_scannet.png" align="center">
 
-#### Qualitative results for S3DIS
+### Qualitative results on S3DIS
 <img src="figs/qualitative_results_for_stanford.png" align="center">
 
 
-### S3DIS
-To reproduce experiment results of S3DIS
+## Experiments on S3DIS
+To reproduce the results of S3DIS, see experiment scripts [here](scripts/S3DIS.sh) for details.
 
-See experiment scripts [here](scripts/S3DIS.sh) for details.
+## Experiments on ScanNet V2
+To reproduce the results of ScanNet V2, see experiment scripts [here](scripts/ScanNetV2.sh) for details.
 
-### ScanNet V2
-
-To reproduce experiment results of ScanNet V2
-
-See experiment scripts [here](scripts/ScanNetV2.sh) for details.
-
-### SemanticKITTY
+## Experiments on SemanticKITTY (FoV)
 
 :fire: Coming soon!
 
-### Acknowledgement
+## Acknowledgement
 This codebase is partially built on the [PointContrast](https://github.com/facebookresearch/PointContrast) project.
 
-### Citation
+## Citation
 If you find this code helpful for your research, please consider citing
 ```
 @inproceedings{liu2023contextual,
