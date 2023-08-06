@@ -44,7 +44,7 @@ Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.
 
 ## Quantitative Results
 All results below are in mIoU(%)
-### Experiments on the indoor dataset (ScanNet V2 & S3DIS)
+### Experiments on the indoor dataset: ScanNet V2 and S3DIS
 <table>
     <tr>
         <td rowspan="2">Method</td>
@@ -53,9 +53,9 @@ All results below are in mIoU(%)
     </tr>
     <tr>
         <td>0.01%</td>
-        <td>0.10%</td>
+        <td>0.1%</td>
         <td>0.01%</td>
-        <td>0.10%</td>
+        <td>0.1%</td>
     </tr>
     <tr>
         <td>MinkNet</td>
@@ -76,11 +76,11 @@ All results below are in mIoU(%)
         <td>52.2 (+14.6)</td>
         <td>63.8 (+3.5)</td>
         <td>59.3 (+11.6)</td>
-        <td>66.3 (3.4)</td>
+        <td>66.3 (+3.4)</td>
     </tr>
 </table>
 
-### Experiments on the outdoor dataset (SemanticKITTY)
+### Experiments on the outdoor dataset SemanticKITTY (FoV)
 <table>
     <tr>
         <td rowspan="2">Method</td>
@@ -88,7 +88,7 @@ All results below are in mIoU(%)
     </tr>
     <tr>
         <td>1%</td>
-        <td>0.10%</td>
+        <td>0.1%</td>
         <td>0.01%</td>
     </tr>
     <tr>
@@ -111,13 +111,8 @@ All results below are in mIoU(%)
     </tr>
 </table>
 
-## Qualitative Results
-### Qualitative results on ScanNet V2
-<img src="figs/qualitative_results_for_scannet.png" align="center">
-
-### Qualitative results on S3DIS
-<img src="figs/qualitative_results_for_stanford.png" align="center">
-
+## Qualitative Results on ScanNet V2 and S3DIS
+<div align=center><img src="figs/qualitative_results_for_scannet.png" align="center" width="500px"><img src="figs/qualitative_results_for_stanford.png" align="center" width="500px"></div>
 
 ## Experiments on S3DIS
 To reproduce the results of S3DIS, see experiment scripts [here](scripts/S3DIS.sh) for details.
