@@ -42,6 +42,84 @@ The preprocessed datasets are shared via google drive
 
 Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.md) to prepare by yourself.
 
+### Quantitative Results
+- Experiments on the indoor dataset (ScanNet V2 & S3DIS)
+- All results below are in mIoU(%)
+<table>
+    <tr>
+        <td rowspan="2">Method</td>
+        <td colspan="2">ScanNet V2</td>
+        <td colspan="2">S3DIS</td>
+    </tr>
+    <tr>
+        <td>0.01%</td>
+        <td>0.10%</td>
+        <td>0.01%</td>
+        <td>0.10%</td>
+    </tr>
+    <tr>
+        <td>MinkNet</td>
+        <td>37.6</td>
+        <td>60.3</td>
+        <td>47.7</td>
+        <td>62.9</td>
+    </tr>
+    <tr>
+        <td>Consis-based</td>
+        <td>44.2 (+6.6)</td>
+        <td>61.8 (+1.5)</td>
+        <td>52.9 (+5.2)</td>
+        <td>64.9 (+2.0)</td>
+    </tr>
+    <tr>
+        <td>CPCM (Ours)</td>
+        <td>52.2 (+14.6)</td>
+        <td>63.8 (+3.5)</td>
+        <td>59.3 (+11.6)</td>
+        <td>66.3 (3.4)</td>
+    </tr>
+</table>
+
+- Experiments on the outdoor dataset (SemanticKITTY)
+- All results below are in mIoU(%)
+<table>
+    <tr>
+        <td rowspan="2">Method</td>
+        <td colspan="3", align="center">SemanticKITTY</td>
+    </tr>
+    <tr>
+        <td>1%</td>
+        <td>0.10%</td>
+        <td>0.01%</td>
+    </tr>
+    <tr>
+        <td>MinkNet</td>
+        <td>37.0</td>
+        <td>30.8</td>
+        <td>23.7</td>
+    </tr>
+    <tr>
+        <td>Consis-based</td>
+        <td>43.7 (+6.7)</td>
+        <td>38.8 (+8.0)</td>
+        <td>30.0 (+6.3)</td>
+    </tr>
+    <tr>
+        <td>CPCM (Ours)</td>
+        <td>47.8 (+10.8)</td>
+        <td>44.0 (+13.2)</td>
+        <td>34.7 (+11.0)</td>
+    </tr>
+</table>
+
+### Qualitative Results
+#### Qualitative results for ScanNet V2
+<img src="figs/qualitative_results_for_scannet.png" align="center">
+
+#### Qualitative results for S3DIS
+<img src="figs/qualitative_results_for_stanford.png" align="center">
+
+
 ### S3DIS
 To reproduce experiment results of S3DIS
 
@@ -52,3 +130,7 @@ See experiment scripts [here](scripts/S3DIS.sh) for details.
 To reproduce experiment results of ScanNet V2
 
 See experiment scripts [here](scripts/ScanNetV2.sh) for details.
+
+### SemanticKITTY
+:fire: Coming soon!
+
