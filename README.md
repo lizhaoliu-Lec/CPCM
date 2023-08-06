@@ -34,6 +34,12 @@ We perform experiments on the following dataset
 - [S3DIS](http://buildingparser.stanford.edu/dataset.html)
 - [Semantic-KITTI (Front view that contains both RGB and XYZ)](http://www.semantic-kitti.org/)
 
-See instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.md) for details.
+The preprocessed datasets are shared via google drive
+
+- [ScanNet V2 (6.88G)](https://drive.google.com/file/d/16y5f16RI-X-9q7k1_nG9tDb1aqmmrNQt/view?usp=drive_link)
+- [S3DIS (8.82G)](https://drive.google.com/file/d/1wD04uB5znFIcY0fY-7U8Ig3jlSX8uczX/view?usp=drive_link)
+- [Semantic-KITTI (3.15G)](https://drive.google.com/file/d/1pxScBQrk5uLrDDoKGgOQ4fcq5yMMrCxX/view?usp=drive_link)
+
+Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.md) to prepare by yourself.
 
 ## :fire: Code is coming soon!
