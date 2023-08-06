@@ -52,3 +52,18 @@ See experiment scripts [here](scripts/S3DIS.sh) for details.
 To reproduce experiment results of ScanNet V2
 
 See experiment scripts [here](scripts/ScanNetV2.sh) for details.
+
+
+### Acknowledgement
+This codebase is partially built on the [PointContrast](https://github.com/facebookresearch/PointContrast) project.
+
+### Citation
+If you find this code helpful for your research, please consider citing
+```
+@inproceedings{liu2023contextual,
+  title={CPCM: Contextual point cloud modeling for weakly-supervised point cloud semantic segmentation},
+  author={Liu, Lizhao and Zhuang, Zhuangwei and Huang, Shangxin and Xiao, Xunlong and Xiang Tianhang and Chen, Cen and Wang, Jingdong and Tan, Mingkui},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  year={2023}
+}
+```
