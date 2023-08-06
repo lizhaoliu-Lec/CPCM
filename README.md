@@ -134,3 +134,14 @@ See experiment scripts [here](scripts/ScanNetV2.sh) for details.
 ### SemanticKITTY
 :fire: Coming soon!
 
+### Citation
+If you find our work useful in your research, please consider citing:
+		  
+	@inproceedings{liu2023cpcm, 
+	title={CPCM: Contextual Point Cloud Modeling for Weakly-supervised Point Cloud Semantic Segmentation},
+    author={Liu, Lizhao and Zhuang, Zhuangwei and Huang, Shangxin and Xiao, Xunlong and Xiang, Tianhang and Chen, Cen and Wang, Jingdong and Tan, Mingkui}
+	booktitle={Proceedings of the IEEE International Conference on Computer Vision},  
+	year={2023}
+	}
+
+---
