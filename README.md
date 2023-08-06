@@ -42,4 +42,13 @@ The preprocessed datasets are shared via google drive
 
 Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.md) to prepare by yourself.
 
-## :fire: Code is coming soon!
+### S3DIS
+To reproduce experiment results of S3DIS
+
+See experiment scripts [here](scripts/S3DIS.sh) for details.
+
+### ScanNet V2
+
+To reproduce experiment results of ScanNet V2
+
+See experiment scripts [here](scripts/ScanNetV2.sh) for details.
