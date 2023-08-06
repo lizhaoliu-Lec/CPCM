@@ -131,6 +131,9 @@ To reproduce experiment results of ScanNet V2
 
 See experiment scripts [here](scripts/ScanNetV2.sh) for details.
 
+### SemanticKITTY
+
+:fire: Coming soon!
 
 ### Acknowledgement
 This codebase is partially built on the [PointContrast](https://github.com/facebookresearch/PointContrast) project.
