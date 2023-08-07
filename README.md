@@ -112,12 +112,11 @@ Or see instruction in [Dataset Preparation Hand-by-hand](prepare_dataset/README.
     </tr>
 </table>
 
-### Qualitative Results
-#### Qualitative results for ScanNet V2
-<img src="figs/qualitative_results_for_scannet.png" align="center">
+### Qualitative Results for ScanNet and S3DIS
 
-#### Qualitative results for S3DIS
-<img src="figs/qualitative_results_for_stanford.png" align="center">
+- The first two rows are results for ScanNet, the last two rows are results for S3DIS
+
+<img src="figs/qualitative_results_for_scannet_and_stanford.png" align="center">
 
 
 ### S3DIS
