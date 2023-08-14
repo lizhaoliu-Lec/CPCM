@@ -111,7 +111,7 @@ CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yam
 
 # 0.01% consistency baseline, consis weight 5
 CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yaml \
-    GENERAL.exp_name 1e-4_percentage_consis_weight5_jsV2 \
+    GENERAL.exp_name 1e-4_percentage_consis_weight5 \
     TRAINER.name TwoStreamTrainer \
     MODEL.out_channels 13 \
     DATA.name StanfordDataLoader \
