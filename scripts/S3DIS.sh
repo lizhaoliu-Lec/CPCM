@@ -2,8 +2,8 @@
 # We provide 0.1% and 0.01% weakly setting experiment scripts
 
 # 0.1% baseline
-CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yaml \
-    GENERAL.exp_name wfs_percentage1e-3_baseline \
+CUDA_VISIBLE_DEVICES=1 python launch.py ddp_train.py --config config/default.yaml \
+    GENERAL.exp_name 1e-3_percentage_baseline \
     TRAINER.name TwoStreamTrainer \
     MODEL.out_channels 13 \
     DATA.name StanfordDataLoader \
@@ -24,12 +24,12 @@ CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yam
     TRAINER.two_stream_feats_key semantic_scores \
     TRAINER.two_stream_loss_mode js_divergence_v2 \
     TRAINER.two_stream_seg_both True \
-    TRAINER.two_stream_loss_weight 0. \
+    TRAINER.two_stream_loss_weight 0.0 \
     AUGMENTATION.use_color_jitter False
 
-# 0.1% consistency baseline
+# 0.1% consistency baseline, consis weight 1
 CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yaml \
-    GENERAL.exp_name wfs_percentage1e-3_consis_baseline \
+    GENERAL.exp_name 1e-3_percentage_consis_weight1 \
     TRAINER.name TwoStreamTrainer \
     MODEL.out_channels 13 \
     DATA.name StanfordDataLoader \
@@ -50,12 +50,12 @@ CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yam
     TRAINER.two_stream_feats_key semantic_scores \
     TRAINER.two_stream_loss_mode js_divergence_v2 \
     TRAINER.two_stream_seg_both True \
-    TRAINER.two_stream_loss_weight 1. \
+    TRAINER.two_stream_loss_weight 1.0 \
     AUGMENTATION.use_color_jitter False
 
-# 0.1% CPCM
+# 0.1% CPCM, consis weight 2, mask_mode grid, grid_size 4, mask two stream, mask weight 5
 CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yaml \
-    GENERAL.exp_name wfs_percentage1e-4_CPCM \
+    GENERAL.exp_name 1e-3_percentage_consis_weight2_maskGrid075GridSize4_weight5 \
     TRAINER.name TwoStreamTrainer \
     MODEL.out_channels 13 \
     DATA.name StanfordDataLoader \
@@ -76,12 +76,19 @@ CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yam
     TRAINER.two_stream_feats_key semantic_scores \
     TRAINER.two_stream_loss_mode js_divergence_v2 \
     TRAINER.two_stream_seg_both True \
-    TRAINER.two_stream_mask_extra_stream True \
+    TRAINER.two_stream_loss_weight 2.0 \
+    AUGMENTATION.use_color_jitter False \
     TRAINER.two_stream_mask_grid_size 4 \
+    TRAINER.two_stream_loss_mask_mode js_divergence_v2 \
     TRAINER.two_stream_mask_ratio 0.75 \
-    TRAINER.two_stream_loss_weight 5. \
+    TRAINER.two_stream_mask_mode grid \
+    TRAINER.two_stream_mask_extra_stream True \
+    TRAINER.two_stream_mask_feats_key semantic_scores \
+    TRAINER.two_stream_mask_corr_loss True \
+    TRAINER.two_stream_mask_self_loss True \
     TRAINER.two_stream_loss_mask_weight 5. \
-    AUGMENTATION.use_color_jitter False
+    TRAINER.two_stream_mask_loss_threshold -1.0 \
+    TRAINER.empty_cache_every 1
 
 # 0.01% baseline
 CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yaml \
