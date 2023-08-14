@@ -125,7 +125,7 @@ To reproduce the results of ScanNet V2, see experiment scripts [here](scripts/Sc
 
 ## Experiments on SemanticKITTY (FoV)
 
-:fire: Coming soon!
+To reproduce the results of ScanNet V2, see experiment scripts [here](scripts/SemanticKittiFoV.sh) for details.
 
 ## Acknowledgement
 This codebase is partially built on the [PointContrast](https://github.com/facebookresearch/PointContrast) project.
