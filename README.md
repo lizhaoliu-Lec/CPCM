@@ -122,6 +122,7 @@ To reproduce the results of S3DIS, see experiment scripts [here](scripts/S3DIS.s
 
 ## Experiments on ScanNet V2
 To reproduce the results of ScanNet V2, see experiment scripts [here](scripts/ScanNetV2.sh) for details.
+The script that generates ScanNet testset results are also available here.
 
 ## Experiments on SemanticKITTY (FoV)
 

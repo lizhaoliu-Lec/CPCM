@@ -535,7 +535,7 @@ class FullySupervisedTrainer(BaseTrainer):
         dataloader_len = len(self.dataset.test_dataloader)
 
         for i, batch in enumerate(self.dataset.test_dataloader):
-            output_path = self.config.test.scannet_testset_output_result_path
+            output_path = self.config.TRAINER.scannet_testset_output_result_path
             num_points = batch['coords'].size(0)
 
             index = batch['indexes'].data

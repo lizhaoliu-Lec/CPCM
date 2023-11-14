@@ -160,3 +160,22 @@ CUDA_VISIBLE_DEVICES=0,1 python launch.py ddp_train.py --config config/default.y
     TRAINER.two_stream_mask_loss_threshold -1. \
     TRAINER.two_stream_mask_grid_size 8 \
     TRAINER.empty_cache_every 1
+
+# for evaluating scannet testset
+CUDA_VISIBLE_DEVICES=0 python launch.py ddp_train.py --config config/default.yaml \
+    GENERAL.exp_name evaluate_scannet_testset \
+    TRAINER.name TwoStreamTrainer \
+    DATA.dataset ScannetVoxelization2cmDataset \
+    SCHEDULER.name PolyLR \
+    TRAINER.epochs 180 \
+    DATA.batch_size 2 \
+    DATA.scannet_path ${YOUR_PATH_TO}/scannet_fully_supervised_preprocessed \
+    DATA.sparse_label False \
+    DATA.two_stream True \
+    MODEL.two_stream_model_apply True \
+    TRAINER.two_stream_seg_both True \
+    TRAINER.run_scannet_test True \
+    TRAINER.scannet_testset_output_result_path ${YOUR_PATH_TO_SCANNET_TESTSET_OUTPUT_RESULT} \
+    MODEL.resume True \
+    MODEL.resume_path ${YOUR_PATH_TO_RESUME_MODEL}
+

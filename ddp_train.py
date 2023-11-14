@@ -104,8 +104,10 @@ def main():
 
     # build trainer and train the model
     trainer = build_trainer(cfg=config)
-    trainer.train()
-    # trainer.test_for_scannet()
+    if not config.TRAINER.run_scannet_test:
+        trainer.train()
+    else:
+        trainer.test_for_scannet()
 
     # Tear down the process group
     cleanup()

@@ -223,9 +223,9 @@ class BaseTrainer:
             #  The key of loaded model do not match the key of current model
             model_dict = OrderedDict()
             for k, v in loaded_dict["model"].items():
-                name = k[13:]
-                name = '.'.join(["module", name])
-                model_dict[name] = v
+                # name = k[13:]
+                # k = '.'.join(["module", name])
+                model_dict[k] = v
             self.model.load_state_dict(model_dict)
             self.start_epoch = self.epoch = loaded_dict['epoch'] + 1  # begin from next epoch
             self.global_step = loaded_dict['global_step'] if 'global_step' in loaded_dict else 0

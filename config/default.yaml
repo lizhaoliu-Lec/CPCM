@@ -83,6 +83,9 @@ MODEL:
   mlp_head_expand_factor: 1
   mlp_head_dim: 96
 
+  resume: False
+  resume_path:
+
 OPTIMIZER:
   name: SGD
   lr: 0.01
@@ -273,6 +276,10 @@ TRAINER:
   geo_aware_loss_contrastive_t: 0.07 # temperature for contrastive learning
 
   geo_aware_vis_cluster: False # save the cluster result every #log_every step
+
+  # if using scannet test
+  run_scannet_test: False
+  scannet_testset_output_result_path:
 
 train:
   # Training / test parameters

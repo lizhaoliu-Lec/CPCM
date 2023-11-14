@@ -407,7 +407,7 @@ class cfl_collate_fn_factory:
         feats = self._aggregate(batch_data, 'feats')
         labels = self._aggregate(batch_data, 'labels')
         indexes = self._aggregate(batch_data, 'indexes')
-        # inverse_map = self._aggregate(batch_data, 'inverse_map')
+        inverse_map = self._aggregate(batch_data, 'inverse_map')
         # instance_labels = self._aggregate(batch_data, 'instance_labels')
 
         coords_batch, feats_batch, labels_batch, = [], [], [],
@@ -434,7 +434,7 @@ class cfl_collate_fn_factory:
             feats_batch.append(torch.from_numpy(feats[batch_id]))
             labels_batch.append(torch.from_numpy(labels[batch_id]).long())
             indexes_batch.append(torch.tensor(indexes[batch_id]).long())
-            # inverse_map_batch.append(torch.tensor(inverse_map[batch_id]).long())
+            inverse_map_batch.append(inverse_map[batch_id].clone().detach().long())
             # instance_labels_batch.append(torch.tensor(instance_labels[batch_id]).long())
 
         # Concatenate all lists
@@ -442,11 +442,11 @@ class cfl_collate_fn_factory:
         feats_batch = torch.cat(feats_batch, 0).float()
         labels_batch = torch.cat(labels_batch, 0).long()
         indexes_batch = torch.stack(indexes_batch, 0).long()
-        # inverse_map_batch = torch.cat(inverse_map_batch, 0).long()
+        inverse_map_batch = torch.cat(inverse_map_batch, 0).long()
         # instance_labels_batch = torch.cat(instance_labels_batch, 0).long()
         return {
             'coords': coords_batch, 'feats': feats_batch, 'labels': labels_batch, 'indexes': indexes_batch,
-            # 'inverse_map': inverse_map_batch,
+            'inverse_map': inverse_map_batch,
             # 'instance_labels': instance_labels_batch
         }
 
