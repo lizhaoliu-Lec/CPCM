@@ -2,8 +2,6 @@
 
 Note ME 0.5.4 is much faster than ME 0.4.3, recommend to use ME 0.5.4
 
-## :fire: Code is coming soon!
-
 ### About us
 We provide our environment info as follows:
 - Hardware: Nvidia GeForce RTX TITAN XP (12 GB) * 8
